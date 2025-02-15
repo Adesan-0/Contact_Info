@@ -13,64 +13,126 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh; /* Usamos min-height en lugar de height */
-      background-color: #b6c687; /* Fondo verde */
+      min-height: 100vh;
+      background-color: #b6c687; /* Fondo verde (modo día) */
       text-align: center;
-      position: relative; /* Necesario para el footer */
+      position: relative;
+      transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave */
     }
+
+    /* Estilos para el modo noche */
+    body.night-mode {
+      background-color: #1a1a1a; /* Fondo oscuro */
+      color: #ffffff; /* Texto blanco */
+    }
+
     .card {
       background: white;
-      padding: 30px; /* mayor padding */
+      padding: 30px;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      max-width: 500px; /* tarjeta más ancha */
-      width: 100%; /* Asegura que la tarjeta ocupe el ancho máximo */
+      max-width: 500px;
+      width: 100%;
+      transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave */
     }
+
+    /* Estilos para el modo noche */
+    body.night-mode .card {
+      background: #333; /* Fondo oscuro para la tarjeta */
+      color: #ffffff; /* Texto blanco */
+    }
+
     .profile-pic {
-      width: 120px; /* foto un poco más grande */
+      width: 120px;
       height: 120px;
       border-radius: 50%;
       object-fit: cover;
       margin-bottom: 15px;
     }
+
     .buttons {
       margin-top: 20px;
     }
+
     .buttons a {
       text-decoration: none;
       color: black;
-      background: #b6c687; /* Verde (corregido: un solo #) */
-      padding: 12px 20px; /* botones más grandes */
+      background: #b6c687;
+      padding: 12px 20px;
       border-radius: 5px;
       margin: 8px;
       display: inline-block;
       transition: background-color 0.3s ease;
     }
+
+    /* Estilos para el modo noche */
+    body.night-mode .buttons a {
+      background: #555; /* Fondo oscuro para los botones */
+      color: #ffffff; /* Texto blanco */
+    }
+
     .buttons a:hover {
-      background: #9aaa6e; /* Verde más oscuro al pasar el mouse */
+      background: #9aaa6e;
     }
+
     footer {
-      position: absolute; /* Posicionamiento absoluto */
-      bottom: 0; /* Lo coloca en la parte inferior */
-      width: 100%; /* Ancho completo */
-      background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente */
-      padding: 10px 0; /* Espaciado interno */
-      text-align: center; /* Centrar el texto */
-      font-size: 14px; /* Tamaño de fuente */
-      color: #333; /* Color del texto */
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 10px 0;
+      text-align: center;
+      font-size: 14px;
+      color: #333;
+      transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave */
     }
+
+    /* Estilos para el modo noche */
+    body.night-mode footer {
+      background-color: rgba(51, 51, 51, 0.8); /* Fondo oscuro semi-transparente */
+      color: #ffffff; /* Texto blanco */
+    }
+
     footer a {
-      color: #b6c687; /* Verde, igual que el fondo */
-      text-decoration: none; /* Sin subrayado */
-      transition: color 0.3s ease; /* Transición suave */
+      color: #b6c687;
+      text-decoration: none;
+      transition: color 0.3s ease;
     }
+
     footer a:hover {
-      color: #9aaa6e; /* Verde más oscuro al pasar el mouse */
-      text-decoration: underline; /* Subrayado al pasar el mouse */
+      color: #9aaa6e;
+      text-decoration: underline;
+    }
+
+    /* Botón de alternar modo */
+    .toggle-mode {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #b6c687;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.3s ease;
+    }
+
+    .toggle-mode:hover {
+      background: #9aaa6e;
+    }
+
+    /* Estilos para el modo noche */
+    body.night-mode .toggle-mode {
+      background: #555;
+      color: #ffffff;
     }
   </style>
 </head>
 <body>
+  <!-- Botón para alternar entre modo noche y día -->
+  <button class="toggle-mode" onclick="toggleNightMode()">Modo Noche</button>
+
   <div class="card">
     <img src="https://github.com/Adesan-0.png" alt="Foto de perfil" class="profile-pic">
     <h2>Adela Sánchez</h2>
@@ -86,5 +148,23 @@
   <footer>
     <p>Todos los derechos reservados | <a href="mailto:adesanlgs@gmail.com">adesanlgs@gmail.com</a></p>
   </footer>
+
+  <script>
+    // Función para alternar entre modo noche y día
+    function toggleNightMode() {
+      const body = document.body;
+      const toggleButton = document.querySelector('.toggle-mode');
+
+      // Alternar la clase 'night-mode' en el body
+      body.classList.toggle('night-mode');
+
+      // Cambiar el texto del botón
+      if (body.classList.contains('night-mode')) {
+        toggleButton.textContent = 'Modo Día';
+      } else {
+        toggleButton.textContent = 'Modo Noche';
+      }
+    }
+  </script>
 </body>
 </html>
