@@ -14,16 +14,15 @@
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      background-color: #b6c687; /* Fondo verde (modo día) */
+      background-color: #b6c687;
       text-align: center;
       position: relative;
-      transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave */
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
-    /* Estilos para el modo noche */
     body.night-mode {
-      background-color: #1a1a1a; /* Fondo oscuro */
-      color: #ffffff; /* Texto blanco */
+      background-color: #1a1a1a;
+      color: #ffffff;
     }
 
     .card {
@@ -33,13 +32,12 @@
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       max-width: 500px;
       width: 100%;
-      transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave */
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
-    /* Estilos para el modo noche */
     body.night-mode .card {
-      background: #333; /* Fondo oscuro para la tarjeta */
-      color: #ffffff; /* Texto blanco */
+      background: #333;
+      color: #ffffff;
     }
 
     .profile-pic {
@@ -48,6 +46,15 @@
       border-radius: 50%;
       object-fit: cover;
       margin-bottom: 15px;
+      animation: wave 1s ease-in-out;
+    }
+
+    @keyframes wave {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(-10deg); }
+      50% { transform: rotate(10deg); }
+      75% { transform: rotate(-10deg); }
+      100% { transform: rotate(0deg); }
     }
 
     .buttons {
@@ -56,23 +63,23 @@
 
     .buttons a {
       text-decoration: none;
-      color: black;
+      color: white;
       background: #b6c687;
       padding: 12px 20px;
       border-radius: 5px;
       margin: 8px;
       display: inline-block;
-      transition: background-color 0.3s ease;
-    }
-
-    /* Estilos para el modo noche */
-    body.night-mode .buttons a {
-      background: #555; /* Fondo oscuro para los botones */
-      color: #ffffff; /* Texto blanco */
+      transition: background-color 0.3s ease, transform 0.2s ease;
     }
 
     .buttons a:hover {
-      background: #9aaa6e;
+      background: #bbb7e5;
+      transform: scale(1.1);
+    }
+
+    body.night-mode .buttons a {
+      background: #ffcc00;
+      color: #000;
     }
 
     footer {
@@ -84,13 +91,12 @@
       text-align: center;
       font-size: 14px;
       color: #333;
-      transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave */
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
-    /* Estilos para el modo noche */
     body.night-mode footer {
-      background-color: rgba(51, 51, 51, 0.8); /* Fondo oscuro semi-transparente */
-      color: #ffffff; /* Texto blanco */
+      background-color: rgba(51, 51, 51, 0.8);
+      color: #ffffff;
     }
 
     footer a {
@@ -104,34 +110,24 @@
       text-decoration: underline;
     }
 
-    /* Botón de alternar modo */
     .toggle-mode {
       position: fixed;
       top: 20px;
       right: 20px;
-      background: #b6c687;
+      background: transparent;
       border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
+      font-size: 24px;
       cursor: pointer;
-      font-size: 14px;
-      transition: background-color 0.3s ease;
+      transition: transform 0.2s ease;
     }
 
     .toggle-mode:hover {
-      background: #9aaa6e;
-    }
-
-    /* Estilos para el modo noche */
-    body.night-mode .toggle-mode {
-      background: #555;
-      color: #ffffff;
+      transform: scale(1.2);
     }
   </style>
 </head>
 <body>
-  <!-- Botón para alternar entre modo noche y día -->
-  <button class="toggle-mode" onclick="toggleNightMode()">Modo Noche</button>
+  <button class="toggle-mode" onclick="toggleNightMode()">🌙</button>
 
   <div class="card">
     <img src="https://github.com/Adesan-0.png" alt="Foto de perfil" class="profile-pic">
@@ -139,31 +135,21 @@
     <p>Gestión de proyectos IT 💻</p>
     <p>Frontend en progreso 🚀</p>
     <div class="buttons">
-      <a href="https://github.com/Adesan-0" target="_blank" class="github">GitHub</a>
+      <a href="https://github.com/Adesan-0" target="_blank">GitHub</a>
       <a href="https://www.linkedin.com/in/adelasanchezlagos/" target="_blank">LinkedIn</a>
     </div>
   </div>
 
-  <!-- Pie de página -->
   <footer>
     <p>Diseñado y Desarrollado por Adela S L | <a href="mailto:adesanlgs@gmail.com">adesanlgs@gmail.com</a></p>
   </footer>
 
   <script>
-    // Función para alternar entre modo noche y día
     function toggleNightMode() {
       const body = document.body;
       const toggleButton = document.querySelector('.toggle-mode');
-
-      // Alternar la clase 'night-mode' en el body
       body.classList.toggle('night-mode');
-
-      // Cambiar el texto del botón
-      if (body.classList.contains('night-mode')) {
-        toggleButton.textContent = 'Modo Día';
-      } else {
-        toggleButton.textContent = 'Modo Noche';
-      }
+      toggleButton.textContent = body.classList.contains('night-mode') ? '☀️' : '🌙';
     }
   </script>
 </body>
